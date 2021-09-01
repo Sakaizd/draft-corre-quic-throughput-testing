@@ -9,7 +9,7 @@
 <meta content="
        This document adapts the   Framework for TCP Throughput Testing to the   QUIC protocol.
 The adapted framework describes a practical methodology for measuring end-to-end QUIC Throughput in a managed IP network.
-The goal is to provide a better indication in regard to user experience.
+The goal of the methodology is to provide a better indication in regard to user experience.
 In this framework, QUIC, UDP, and IP parameters are specified to optimize QUIC Throughput. 
     " name="description">
 <meta content="xml2rfc 3.9.1" name="generator">
@@ -1046,7 +1046,7 @@ address div.right {
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document adapts the <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> Framework for TCP Throughput Testing to the <span>[<a href="#RFC9000" class="xref">RFC9000</a>]</span> QUIC protocol.
 The adapted framework describes a practical methodology for measuring end-to-end QUIC Throughput in a managed IP network.
-The goal is to provide a better indication in regard to user experience.
+The goal of the methodology is to provide a better indication in regard to user experience.
 In this framework, QUIC, UDP, and IP parameters are specified to optimize QUIC Throughput.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
@@ -1107,91 +1107,91 @@ In this framework, QUIC, UDP, and IP parameters are specified to optimize QUIC T
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="compact ulBare toc ulEmpty">
-<li class="compact ulBare toc ulEmpty" id="section-toc.1-1.1">
+<nav class="toc"><ul class="ulEmpty compact toc ulBare">
+<li class="ulEmpty compact toc ulBare" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
-<ul class="ulBare ulEmpty compact toc">
-<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.1.2.1">
+<ul class="compact ulEmpty toc ulBare">
+<li class="compact ulEmpty toc ulBare" id="section-toc.1-1.1.2.1">
                 <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-impacting-changes-between-t" class="xref">Impacting changes between TCP and QUIC</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulBare toc ulEmpty" id="section-toc.1-1.2">
+          <li class="ulEmpty compact toc ulBare" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-conventions-and-definitions" class="xref">Conventions and Definitions</a></p>
 </li>
-          <li class="compact ulBare toc ulEmpty" id="section-toc.1-1.3">
+          <li class="ulEmpty compact toc ulBare" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-methodology" class="xref">Methodology</a></p>
-<ul class="ulBare ulEmpty compact toc">
-<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.3.2.1">
+<ul class="compact ulEmpty toc ulBare">
+<li class="compact ulEmpty toc ulBare" id="section-toc.1-1.3.2.1">
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-path-mtu" class="xref">Path MTU</a></p>
 </li>
-              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.3.2.2">
+              <li class="compact ulEmpty toc ulBare" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-round-trip-time-rtt-and-bot" class="xref">Round-Trip Time (RTT) and Bottleneck Bandwidth (BB)</a></p>
 </li>
-              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.3.2.3">
+              <li class="compact ulEmpty toc ulBare" id="section-toc.1-1.3.2.3">
                 <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-measuring-rtt" class="xref">Measuring RTT</a></p>
 </li>
-              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.3.2.4">
+              <li class="compact ulEmpty toc ulBare" id="section-toc.1-1.3.2.4">
                 <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="xref">3.4</a>.  <a href="#name-measuring-bb" class="xref">Measuring BB</a></p>
 </li>
-              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.3.2.5">
+              <li class="compact ulEmpty toc ulBare" id="section-toc.1-1.3.2.5">
                 <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="xref">3.5</a>.  <a href="#name-measuring-quic-throughput" class="xref">Measuring QUIC Throughput</a></p>
 </li>
-              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.3.2.6">
+              <li class="compact ulEmpty toc ulBare" id="section-toc.1-1.3.2.6">
                 <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="xref">3.6</a>.  <a href="#name-minimum-quic-congestion-con" class="xref">Minimum QUIC Congestion Control Credit</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulBare toc ulEmpty" id="section-toc.1-1.4">
+          <li class="ulEmpty compact toc ulBare" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-quic-metrics" class="xref">QUIC Metrics</a></p>
-<ul class="ulBare ulEmpty compact toc">
-<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.4.2.1">
+<ul class="compact ulEmpty toc ulBare">
+<li class="compact ulEmpty toc ulBare" id="section-toc.1-1.4.2.1">
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-transfert-time-ratio" class="xref">Transfert Time Ratio</a></p>
-<ul class="ulBare ulEmpty compact toc">
-<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.4.2.1.2.1">
+<ul class="compact ulEmpty toc ulBare">
+<li class="compact ulEmpty toc ulBare" id="section-toc.1-1.4.2.1.2.1">
                     <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="xref">4.1.1</a>.  <a href="#name-maximum-achievable-quic-thr" class="xref">Maximum Achievable QUIC Throughput Calculation</a></p>
 </li>
-                  <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.4.2.1.2.2">
+                  <li class="compact ulEmpty toc ulBare" id="section-toc.1-1.4.2.1.2.2">
                     <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="xref">4.1.2</a>.  <a href="#name-quic-transfer-time-and-tran" class="xref">QUIC Transfer Time and Transfer Time Ratio Calculation</a></p>
 </li>
                 </ul>
 </li>
-              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.4.2.2">
+              <li class="compact ulEmpty toc ulBare" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-quic-efficiency" class="xref">QUIC Efficiency</a></p>
-<ul class="ulBare ulEmpty compact toc">
-<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.4.2.2.2.1">
+<ul class="compact ulEmpty toc ulBare">
+<li class="compact ulEmpty toc ulBare" id="section-toc.1-1.4.2.2.2.1">
                     <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="xref">4.2.1</a>.  <a href="#name-quic-efficiency-percentage-" class="xref">QUIC Efficiency Percentage Calculation</a></p>
 </li>
                 </ul>
 </li>
-              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.4.2.3">
+              <li class="compact ulEmpty toc ulBare" id="section-toc.1-1.4.2.3">
                 <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-buffer-delay" class="xref">Buffer Delay</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulBare toc ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-conducting-quic-throughtput" class="xref">Conducting QUIC Throughtput Tests</a></p>
-<ul class="ulBare ulEmpty compact toc">
-<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.5.2.1">
+          <li class="ulEmpty compact toc ulBare" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-conducting-quic-throughput-" class="xref">Conducting QUIC Throughput Tests</a></p>
+<ul class="compact ulEmpty toc ulBare">
+<li class="compact ulEmpty toc ulBare" id="section-toc.1-1.5.2.1">
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-results-interpretation" class="xref">Results Interpretation</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulBare toc ulEmpty" id="section-toc.1-1.6">
+          <li class="ulEmpty compact toc ulBare" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
-<ul class="ulBare ulEmpty compact toc">
-<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.6.2.1">
+<ul class="compact ulEmpty toc ulBare">
+<li class="compact ulEmpty toc ulBare" id="section-toc.1-1.6.2.1">
                 <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-0-rtt-attack" class="xref">0-RTT attack</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact ulBare toc ulEmpty" id="section-toc.1-1.7">
+          <li class="ulEmpty compact toc ulBare" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
-          <li class="compact ulBare toc ulEmpty" id="section-toc.1-1.8">
+          <li class="ulEmpty compact toc ulBare" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
-          <li class="compact ulBare toc ulEmpty" id="section-toc.1-1.9">
+          <li class="ulEmpty compact toc ulBare" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a></p>
 </li>
         </ul>
@@ -1205,10 +1205,10 @@ In this framework, QUIC, UDP, and IP parameters are specified to optimize QUIC T
       </h2>
 <p id="section-1-1">This document adapts the <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> Framework for TCP Throughput Testing to the QUIC protocol <span>[<a href="#RFC9000" class="xref">RFC9000</a>]</span>.
 RFC6349 defines a methodology for testing sustained TCP Layer performance.
-Like TCP <span>[<a href="#RFC793" class="xref">RFC793</a>]</span>, QUIC is a connection oriented transport protocol.
+Like TCP <span>[<a href="#RFC793" class="xref">RFC793</a>]</span>, QUIC is a connection-oriented transport protocol.
 However, there are multiple differences between both protocols and some of these differences impact the throughput testing methodology.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">For easier reference, this document follows the same organisation as <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> and each section describes changes relevant to the equivalent <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> section.
-The scope and goals section is omited as the objective of this document is precisely to remain within the same scope and goals of <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span>.
+<p id="section-1-2">For easier reference, this document follows the same organization as <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> and each section describes changes relevant to the equivalent <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> section.
+The scope and goals section is omitted as the objective of this document is precisely to remain within the same scope and goals of <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span>.
 <a href="#methodology" class="xref">Section 3</a> presents changes to the individual steps of the <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> methodology.
 <a href="#metrics" class="xref">Section 4</a> describes the three main metrics used to measure QUIC Throughput.
 <a href="#conducting" class="xref">Section 5</a> covers conducting QUIC Throughput testing.
@@ -1234,12 +1234,12 @@ Finally, <a href="#security" class="xref">Section 6</a> presents additional secu
         </ul>
 <p id="section-1.1-3">There are multiple changes between TCP and QUIC impacting the throughput testing methodology.
 Firstly, the multiple QUIC headers and frames result in overheads variable in size which in turn impact the computation for the maximum achievable QUIC throughput.
-Secondly, QUIC provide streams which can be used for throughput testing but which may also result in variable overheads.
+Secondly, QUIC provides streams that can be used for throughput testing but which may also result in variable overheads.
 Both points are discussed in <a href="#transferttimeratio" class="xref">Section 4.1</a>.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
 <p id="section-1.1-4">Thirdly, QUIC provides congestion control genericity and receiver-controlled control flow credits instead of the TCP sliding receiver window.
 While QUIC Loss Detection and Congestion Control <span>[<a href="#RFC9002" class="xref">RFC9002</a>]</span> specifies a congestion controller similar to TCP NewReno~<span>[<a href="#RFC6582" class="xref">RFC6582</a>]</span>,
 the signals QUIC provides for congestion control are generic and are designed to support different sender-side algorithms.
-In this document, the achievable QUIC Throughput is that amount of data per unit of time that QUIC transports when in the QUIC Equilibrium state.
+In this document, the achievable QUIC Throughput is the amount of data per unit of time that QUIC transports when in the QUIC Equilibrium state.
 Derived from Round-Trip Time (RTT) and network Bottleneck Bandwidth (BB), the Bandwidth-Delay Product (BDP) determines the Send and Received Socket buffer sizes required to achieve the maximum QUIC Throughput.
 Throughout this document, "maximum achievable throughput" refers to the theoretical achievable throughput when QUIC is in the Equilibrium state.
 In this document, we assume that QUIC uses a transmitting side congestion controller with a congestion window (QUIC CWND) and congestion controller states similar to TCP NewReno.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
@@ -1270,8 +1270,7 @@ In this document, we assume that QUIC uses a transmitting side congestion contro
 <a href="#name-quic-newreno-congestion-con" class="selfRef">QUIC NewReno Congestion Control States and Transitions</a>
           </figcaption></figure>
 </div>
-<p id="section-1.1-6">On the receiving side, QUIC does not use a sliding receiver window and instead uses a control flow credits mechanism to inform the transmitting end on the
-maximum total amount of data the receiver is willing to receive for each stream and connection.
+<p id="section-1.1-6">On the receiving side, QUIC does not use a sliding receiver window and instead uses a control flow credits mechanism to inform the transmitting end on the maximum total amount of data the receiver is willing to receive for each stream and connection.
 The amount of available control flow credits does not directly control the QUIC Throughput but insufficient credits may lead to a stream or a whole connection being rate-limited.
 This is discussed in <a href="#cfc" class="xref">Section 3.6</a>.<a href="#section-1.1-6" class="pilcrow">¶</a></p>
 </section>
@@ -1340,7 +1339,7 @@ These measurements are used to calculate the BDP and to provide estimates for th
         <h3 id="name-measuring-rtt">
 <a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-measuring-rtt" class="section-name selfRef">Measuring RTT</a>
         </h3>
-<p id="section-3.3-1">In additions to the solutions proposed in <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> for measuring RTT, short QUIC sessions <span class="bcp14">MAY</span> be employed to baseline RTT values off-peak hours and outside of test sessions.
+<p id="section-3.3-1">In addition to the solutions proposed in <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> for measuring RTT, short QUIC sessions <span class="bcp14">MAY</span> be employed to baseline RTT values off-peak hours and outside of test sessions.
 This solution requires that the QUIC implementation expose RTT measurements <span>[<a href="#RFC9002" class="xref">RFC9002</a>]</span>.
 latest_rtt <span class="bcp14">SHOULD</span> be used to sample baseline RTT using the minimum observed latest_RTT during off-peak hours and outside of test sessions.
 instead of latest_rtt, min_rtt <span class="bcp14">MAY</span> be used to sample baseline RTT during off-peak hours and outside of test sessions.
@@ -1374,19 +1373,19 @@ These 3 metrics are defined in <a href="#metrics" class="xref">Section 4</a> and
         <h3 id="name-minimum-quic-congestion-con">
 <a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-minimum-quic-congestion-con" class="section-name selfRef">Minimum QUIC Congestion Control Credit</a>
         </h3>
-<p id="section-3.6-1">As for <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> TCP througput testing, the QUIC throuput test <span class="bcp14">MUST</span> ensure that the QUIC performance is never rate limited.
+<p id="section-3.6-1">As for <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> TCP throughput testing, the QUIC throughput test <span class="bcp14">MUST</span> ensure that the QUIC performance is never rate-limited.
 Whereas TCP uses a sliding receiver window (TCP RWND), QUIC relies on congestion control credits that are not automatically sliding.
 Instead, available control-flow credits are increased by sending MAX_DATA and MAX_STREAM_DATA frames.
-The algorithm used to send these frames depends on the QUIC implementation or may be left for the application to control at each receiving sides.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
+The algorithm used to send these frames depends on the QUIC implementation or may be left for the application to control at each receiving side.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
 <p id="section-3.6-2">In addition to setting Send Socket Buffer size higher than the BDP, the QUIC TTD <span class="bcp14">MUST</span> ensure that connections and streams always have Control-Flow Credits (CFC) in excess of the BDP so that any QUIC stream or connection is never restricted below the BDP before MAX_DATA and MAX_STREAM_DATA frames have a chance to arrive.
-If a QUIC connection or stream has CFC below the minimum required CFC, then their is a risk of the CFC reaching 0 before the limits can be increased.
+If a QUIC connection or stream has CFC below the minimum required CFC, then there is a risk of the CFC reaching 0 before the limits can be increased.
 If a QUIC stream has CFC at 0, then that stream is rate-limited and there is a risk of the QUIC Throughput to not be optimal.
 Note that other streams may still manage to fill the BDP of the NUT.
 If a QUIC connection has CFC at 0, then that connection is rate-limited and the QUIC Throughput cannot be optimal.
 The QUIC TTD <span class="bcp14">MUST</span> report every events and events' duration where a QUIC stream or connection is rate-limited.<a href="#section-3.6-2" class="pilcrow">¶</a></p>
 <p id="section-3.6-3">A QUIC implementation could implement a sliding receive window similar to TCP RWND by sending MAX_DATA and MAX_STREAM_DATA frames with each ACK frame.
-In this case the minimum CFC (i.e. initial data limit) is similar to the minimum TCP RWND and example numbers proposed in <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span>.
-However, such solution imposes a heavy overhead and it is more likely that sending of MAX_DATA and MAX_STREAM_DATA frames are delayed by the QUIC implementation.
+In this case, the minimum CFC (i.e. initial data limit) is similar to the minimum TCP RWND and example numbers proposed in <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span>.
+However, such a solution imposes a heavy overhead and it is more likely that sending of MAX_DATA and MAX_STREAM_DATA frames are delayed by the QUIC implementation.
 Thus, the minimum CFC should be set sufficiently large so that the QUIC implementation can send MAX_DATA and MAX_STREAM_DATA frames with new limits before control-flow credits are exhausted.<a href="#section-3.6-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1397,7 +1396,7 @@ Thus, the minimum CFC should be set sufficiently large so that the QUIC implemen
       <h2 id="name-quic-metrics">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-quic-metrics" class="section-name selfRef">QUIC Metrics</a>
       </h2>
-<p id="section-4-1">The proposed metrics for measuring QUIC Througput remain the same as for measuring TCP Throughput with some minor differences.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">The proposed metrics for measuring QUIC Throughput remain the same as for measuring TCP Throughput with some minor differences.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <div id="transferttimeratio">
 <section id="section-4.1">
         <h3 id="name-transfert-time-ratio">
@@ -1422,10 +1421,10 @@ The following sections provide derivations for the Maximum Achievable QUIC Throu
           </h4>
 <p id="section-4.1.1-1">This section provides formulas to calculate the Maximum Achievable QUIC Throughput, with examples for T3 (44.21 Mbps) and Ethernet.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1.1-2">All calculations are based on IP version 4 with IP headers of 20 Bytes and UDP headers of 8 Bytes within an MTU of 1500 Bytes.
-However, on the contrary to TCP, the QUIC overhead is variable in size, in particular due to variable length fields and streams multiplexing.
-We are interested in estimating the maximal QUIC Througput at an equilibrium, so we first simplify the problem by considering an optimistic scenario with data exchanged over 1-RTT packets with only a single stream frame per packet.
+However, on the contrary to TCP, the QUIC overhead is variable in size, in particular, due to variable-length fields and streams multiplexing.
+We are interested in estimating the maximal QUIC Throughput at equilibrium, so we first simplify the problem by considering an optimistic scenario with data exchanged over 1-RTT packets with only a single stream frame per packet.
 For the content of the STREAM frame, we consider that the offset field is used but not the length field since there is only one frame per packet.<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-3">Here are the 1-RTT packet and STREAM frame header as defined in <span>[<a href="#RFC9000" class="xref">RFC9000</a>]</span>.<a href="#section-4.1.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-3">Here are the 1-RTT packet and STREAM frame headers as defined in <span>[<a href="#RFC9000" class="xref">RFC9000</a>]</span>.<a href="#section-4.1.1-3" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-4.1.1-4">
 <pre>
    1-RTT Packet {
@@ -1452,11 +1451,11 @@ For the content of the STREAM frame, we consider that the offset field is used b
    }
 </pre><a href="#section-4.1.1-5" class="pilcrow">¶</a>
 </div>
-<p id="section-4.1.1-6">Supposing all variable length fields are encoded as the minimal size possible, the overhead would be 3 Bytes for QUIC 1-RTT packet and 2 Bytes for QUIC STREAM frame.
+<p id="section-4.1.1-6">Supposing all variable-length fields are encoded as the minimum size possible, the overhead would be 3 Bytes for QUIC 1-RTT packet and 2 Bytes for QUIC STREAM frame.
 This gives us a minimal IP/UDP/QUIC overhead of 20 + 8 + 3 + 2 = 33 Bytes.
 Note that alternatively, considering all variable length fields encoded as the largest size possible, the overhead would be 25 Bytes for QUIC 1-RTT packet and 17 Bytes for QUIC STREAM frame.
-In this worst case scenario, the overhead could mount up to 20 + 8 + 25 + 17 = 70 Bytes for one STREAM frame per packet.<a href="#section-4.1.1-6" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-7">In order to estimate the Maximum Achievable QUIC Throughput, we first need to determine the maximum quantity of Frames Per Second (FPS) permitted by the actual physical layer (Layer 1) speed.<a href="#section-4.1.1-7" class="pilcrow">¶</a></p>
+In this worst-case scenario, the overhead could mount up to 20 + 8 + 25 + 17 = 70 Bytes for one STREAM frame per packet.<a href="#section-4.1.1-6" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-7">To estimate the Maximum Achievable QUIC Throughput, we first need to determine the maximum quantity of Frames Per Second (FPS) permitted by the actual physical layer (Layer 1) speed.<a href="#section-4.1.1-7" class="pilcrow">¶</a></p>
 <p id="section-4.1.1-8">For a T3 link, the calculation formula is:<a href="#section-4.1.1-8" class="pilcrow">¶</a></p>
 <div id="section-4.1.1-9">
 <pre class="sourcecode lang-pseudocode">
@@ -1536,7 +1535,7 @@ In this worst case scenario, the overhead could mount up to 20 + 8 + 25 + 17 = 7
           <h4 id="name-quic-transfer-time-and-tran">
 <a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-quic-transfer-time-and-tran" class="section-name selfRef">QUIC Transfer Time and Transfer Time Ratio Calculation</a>
           </h4>
-<p id="section-4.1.2-1">The following table illustrates the Ideal QUIC Transfer Time of a single QUIC connection when its Send Socket Buffer sizes equal or exceed the BDP and the sender is never control flow limited.<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.2-1">The following table illustrates the Ideal QUIC Transfer Time of a single QUIC connection when its Send Socket Buffer size equals or exceeds the BDP and the sender is never control-flow limited.<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
 <span id="name-link-speed-rtt-bdp-maximum-"></span><table class="center" id="table-1">
             <caption>
 <a href="#table-1" class="selfRef">Table 1</a>:
@@ -1606,7 +1605,7 @@ In this example, the Ethernet service provides a Committed Access Rate (CAR) of 
 Each connection may achieve different throughputs during a test, and the overall throughput rate is not always easy to determine (especially as the number of connections increases).<a href="#section-4.1.2-6" class="pilcrow">¶</a></p>
 <p id="section-4.1.2-7">The Ideal QUIC Transfer Time would be ~8.4 seconds, but in this example, the Actual QUIC Transfer Time was 12 seconds.
 The QUIC Transfer Time Ratio would then be 12/8.4 = 1.43, which indicates that the transfer across all connections took 1.43 times longer than the ideal.
-Note that our estimation of the Maximum Achievable QUIC Throughput are overestimated due to the optimistic scenario initially described.
+Note that our estimation of the Maximum Achievable QUIC Throughput is overestimated due to the optimistic scenario initially described.
 The actual QUIC Transfer Time is thus expected to be higher than the Ideal QUIC Transfer Time due to eventual network inefficiencies but also by overheads caused by the selected QUIC implementation as well as the number of concurrent streams being used for the test.<a href="#section-4.1.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1618,10 +1617,10 @@ The actual QUIC Transfer Time is thus expected to be higher than the Ideal QUIC 
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-quic-efficiency" class="section-name selfRef">QUIC Efficiency</a>
         </h3>
 <p id="section-4.2-1">In <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span>, the TCP efficiency metric represents the percentage of Bytes that were not retransmitted.
-However when packet loss occurs in QUIC, Bytes are not retransmitted per say and instead new packets are generated.
-As a result, a packet may contain retransmitted frames as well as new frames and measuring the amount of retransmitted Bytes is not straigthforward.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+However, when packet loss occurs in QUIC, Bytes are not retransmitted per se, instead, new packets are generated.
+As a result, a packet may contain retransmitted frames as well as new frames, and measuring the amount of retransmitted Bytes is not straightforward.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">Instead, the QUIC efficiency <span class="bcp14">MUST</span> be measured by calculating the ratio between QUIC Payload Bytes and UDP Bytes.
-QUIC Payload Bytes are the total number of payload Bytes transmitted over QUIC while UDP Bytes are the total number of Bytes sent or received on the UDP socket, i.e. including QUIC protocol overheads.
+QUIC Payload Bytes are the total number of payload Bytes transmitted over QUIC while UDP Bytes are the total number of bytes sent or received on the UDP socket, i.e. including QUIC protocol overheads.
 This method allows to capture the impact of retransmission as retransmission of frames will impact the UDP Bytes without impacting the QUIC Bytes.
 Retransmitted data will effectively lower the measured QUIC Efficiency.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <div id="section-4.2-3">
@@ -1632,10 +1631,10 @@ Retransmitted data will effectively lower the measured QUIC Efficiency.<a href="
 </pre><a href="#section-4.2-3" class="pilcrow">¶</a>
 </div>
 <p id="section-4.2-4">In comparison with <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span>, the sender side QUIC Efficiency metric also measures the inherent overheads of QUIC caused by headers, frames, multiple streams, and implementation choices.
-As the receiver side UDP Bytes also measures these overheads but does not measure retransmission overheads, the receiver side QUIC Efficiency <span class="bcp14">MAY</span> be used to normalise the sender side QUIC Efficiency.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+As the receiver side UDP Bytes also measures these overheads but does not measure retransmission overheads, the receiver side QUIC Efficiency <span class="bcp14">MAY</span> be used to normalize the sender side QUIC Efficiency.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 <div id="section-4.2-5">
 <pre class="sourcecode lang-pseudocode">
- Normalised   Sender QUIC Efficiency
+ Normalized Sender QUIC Efficiency
     QUIC =  --------------------------
  Efficiency  Receiver QUIC Efficiency
 </pre><a href="#section-4.2-5" class="pilcrow">¶</a>
@@ -1653,7 +1652,7 @@ As the receiver side UDP Bytes also measures these overheads but does not measur
                         103,448
 </pre><a href="#section-4.2.1-2" class="pilcrow">¶</a>
 </div>
-<p id="section-4.2.1-3">Considering a similar example with 1% of packet loss, the UDP Bytes emited would be approximately 104,500 Bytes. The resulting QUIC Efficiency Percentage would thus be calculated as:<a href="#section-4.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.2.1-3">Considering a similar example with 1% of packet loss, the UDP Bytes emitted would be approximately 104,500 Bytes. The resulting QUIC Efficiency Percentage would thus be calculated as:<a href="#section-4.2.1-3" class="pilcrow">¶</a></p>
 <div id="section-4.2.1-4">
 <pre class="sourcecode lang-pseudocode">
                         100,000
@@ -1662,7 +1661,7 @@ As the receiver side UDP Bytes also measures these overheads but does not measur
 </pre><a href="#section-4.2.1-4" class="pilcrow">¶</a>
 </div>
 <p id="section-4.2.1-5">On the receiver side, the measured UDP Bytes would be approximately 103,448 UDP Bytes in both scenarios since no loss overheads would be measured resulting in Receiver QUIC Efficiency = 96,6%.
-Normalising the previously measured QUIC Efficiency metrics (sender side) would thus result in Normalised Quic Efficiency = 100% in the first example and Normalised QUIC Efficiency = 99%  in the example with 1% of packet loss.<a href="#section-4.2.1-5" class="pilcrow">¶</a></p>
+Normalizing the previously measured QUIC Efficiency metrics (sender side) would thus result in Normalised QUIC Efficiency = 100% in the first example and Normalised QUIC Efficiency = 99%  in the example with 1% of packet loss.<a href="#section-4.2.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1673,7 +1672,7 @@ Normalising the previously measured QUIC Efficiency metrics (sender side) would 
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-buffer-delay" class="section-name selfRef">Buffer Delay</a>
         </h3>
 <p id="section-4.3-1">The third metric is the Buffer Delay Percentage, which represents the increase in RTT during a QUIC Throughput test versus the inherent or baseline RTT.
-This metric remain identical to the one described in <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span>.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+This metric remains identical to the one described in <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span>.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <div id="section-4.3-2">
 <pre class="sourcecode lang-pseudocode">
   Average RTT     Total RTTs during transfer
@@ -1690,15 +1689,15 @@ during transfer = ----------------------------
 </div>
 <p id="section-4.3-3">Note that while <span>[<a href="#RFC9002" class="xref">RFC9002</a>]</span> specifies QUIC RTT measurements in the form of latest_rtt, smoothed_rtt, and min_rtt, the average RTT used in the Buffer Delay Percentage metric is derived from the total of all measured RTTs during the actual test at every second divided by the test duration in seconds.
 RTT metrics smoothed_rtt and min_rtt described in <span>[<a href="#RFC9002" class="xref">RFC9002</a>]</span> <span class="bcp14">MUST NOT</span> be used to compute the Average RTT during transfer.
-RTT metric latest_rtt <span class="bcp14">MAY</span> be used for computing Average RTT during transfer by sampling it at every seconds.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
+RTT metric latest_rtt <span class="bcp14">MAY</span> be used for computing Average RTT during transfer by sampling it at every second.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="conducting">
 <section id="section-5">
-      <h2 id="name-conducting-quic-throughtput">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-conducting-quic-throughtput" class="section-name selfRef">Conducting QUIC Throughtput Tests</a>
+      <h2 id="name-conducting-quic-throughput-">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-conducting-quic-throughput-" class="section-name selfRef">Conducting QUIC Throughput Tests</a>
       </h2>
 <p id="section-5-1">The methodology for QUIC Throughput testing follows the same considerations as described in <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span>.
 In addition to opening multiple connections, QUIC allows data to be exchanged over fully multiplexed streams.
@@ -1708,12 +1707,12 @@ Secondly, as QUIC packets are encrypted the NUT cannot observe the number of str
 Thus we do not expect NUT to apply different policies based on the number of streams.
 A QUIC TTD <span class="bcp14">SHOULD NOT</span> use multiple test streams to fill the BDP of the NUT.
 A QUIC TTD <span class="bcp14">MAY</span> use two streams over a single connection where one stream is a test stream filling the BDP of the NUT and the other is a control stream used for controlling the test and exchanging test results.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">At the end, a QUIC Throughput Test Device (QUIC TTD) <span class="bcp14">SHOULD</span> generate a report with the calculated BDP and QUIC Throughput results.
+<p id="section-5-2">In the end, a QUIC Throughput Test Device (QUIC TTD) <span class="bcp14">SHOULD</span> generate a report with the calculated BDP and QUIC Throughput results.
 The report <span class="bcp14">SHOULD</span> also include the results for the 3 metrics defined in Section 4.
 As QUIC does not use a receive window, a QUIC Throughput test is constituted of multiple Send and Receive Socket Buffer experiments.
 The report <span class="bcp14">SHOULD</span> include QUIC Throughput results for each Socket Buffer size tested.
-The goal is to provide achievable versus actual QUIC Throughput results with respect to the Socket Buffer size tested when no fragmentation occurs and to provide a clear relationship between these 3 metrics and user experience.
-As an example, for the same results in regard to Transfer Time Ratio, a better QUIC Efficiency could be obtained at the cost of higher Buffer Delays.<a href="#section-5-2" class="pilcrow">¶</a></p>
+The goal is to provide achievable versus actual QUIC Throughput results for the Socket Buffer size tested when no fragmentation occurs and to provide a clear relationship between these 3 metrics and user experience.
+As an example, for the same Transfer Time Ratio, a better QUIC Efficiency could be obtained at the cost of higher Buffer Delays.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <div id="results-interpretation">
 <section id="section-5.1">
         <h3 id="name-results-interpretation">
@@ -1730,24 +1729,17 @@ at both the sender and receiver sides (i.e. low QUIC Efficiency but high Normali
 </li>
           <li class="normal" id="section-5.1-2.4">Network congestion causing an increase in RTT, which may be inferred from the Buffer Delay Percentage (i.e., 0% = no increase in RTT over baseline).<a href="#section-5.1-2.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-5.1-2.5">Rate limiting by traffic shapping may also cause an increase in RTT.<a href="#section-5.1-2.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-5.1-2.5">Rate limiting by traffic shaping may also cause an increase in RTT.<a href="#section-5.1-2.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-5.1-2.6">Maximum UDP Buffer Space.  All operating systems have a global
-mechanism to limit the quantity of system memory to be used by UDP
+          <li class="normal" id="section-5.1-2.6">Maximum UDP Buffer Space.  All operating systems have a global mechanism to limit the quantity of system memory to be used by UDP
 sockets.  On some systems, each socket is subject to a
-memory limit that is applied to the total memory used for input
-data, output data, and controls.  On other systems, there are
-separate limits for input and output buffer spaces per socket.
+memory limit that is applied to the total memory used for input data, output data, and controls.  On other systems, there are separate limits for input and output buffer spaces per socket.
 Client/server IP hosts might be configured with Maximum UDP Buffer
-Space limits that are far too small for high-performance networks. These
-socket buffers <span class="bcp14">MUST</span> be large enough to hold a full BDP of UDP Bytes
-plus some overhead.<a href="#section-5.1-2.6" class="pilcrow">¶</a>
+Space limits that are far too small for high-performance networks. These socket buffers <span class="bcp14">MUST</span> be large enough to hold a full BDP of UDP Bytes plus some overhead.<a href="#section-5.1-2.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-5.1-2.7">Path MTU.  The client/server IP host system <span class="bcp14">SHOULD</span> use the largest
-possible MTU for the path.  This may require enabling Path MTU
+          <li class="normal" id="section-5.1-2.7">Path MTU.  The client/server IP host system <span class="bcp14">SHOULD</span> use the largest possible MTU for the path.  This may require enabling Path MTU
 Discovery <span>[<a href="#RFC1191" class="xref">RFC1191</a>]</span> and <span>[<a href="#RFC4821" class="xref">RFC4821</a>]</span>.  Since <span>[<a href="#RFC1191" class="xref">RFC1191</a>]</span> is flawed, Path
-MTU Discovery is sometimes not enabled by default and may need to
-be explicitly enabled by the system administrator.  <span>[<a href="#RFC4821" class="xref">RFC4821</a>]</span>
+MTU Discovery is sometimes not enabled by default and may need to be explicitly enabled by the system administrator.  <span>[<a href="#RFC4821" class="xref">RFC4821</a>]</span>
 describes a new, more robust algorithm for MTU discovery and ICMP
 black hole recovery.<a href="#section-5.1-2.7" class="pilcrow">¶</a>
 </li>
@@ -1765,14 +1757,14 @@ black hole recovery.<a href="#section-5.1-2.7" class="pilcrow">¶</a>
 <p id="section-6-1">Measuring QUIC network performance raises security concerns.
 Metrics produced within this framework may create security issues.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">Security considerations mentionned in <span>[<a href="#RFC6349" class="xref">RFC6349</a>]</span> remain valid for QUIC Throughput testing.
-In particular, as QUIC encrypts traffic over UDP, QUIC Throughput testing may appears as a denial-of-service attack.
+In particular, as QUIC encrypts traffic over UDP, QUIC Throughput testing may appear as a denial-of-service attack.
 Cooperation between the end-user customer and the network provider is thus required.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <div id="rtt-attack">
 <section id="section-6.1">
         <h3 id="name-0-rtt-attack">
 <a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-0-rtt-attack" class="section-name selfRef">0-RTT attack</a>
         </h3>
-<p id="section-6.1-1">In practice, a QUIC Throughput test probably implements a control channel to control the test and one or more througput channels to send data.
+<p id="section-6.1-1">In practice, a QUIC Throughput test probably implements a control channel to control the test and one or more throughput channels to send data.
 The control channel would serve to authenticate the TTD, request a test session through some throughput channels, and exchange test results.
 As 0-RTT packets are vulnerable to replay attacks <span>[<a href="#RFC9001" class="xref">RFC9001</a>]</span>, 0-RTT packets <span class="bcp14">MUST</span> not be used by a TTD client initiating a control channel to a TTD server.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 </section>
