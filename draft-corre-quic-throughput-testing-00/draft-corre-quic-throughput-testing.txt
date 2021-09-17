@@ -4,8 +4,8 @@
 
 Network Working Group                                           K. Corre
 Internet-Draft                                                      EXFO
-Intended status: Informational                          1 September 2021
-Expires: 5 March 2022
+Intended status: Informational                         17 September 2021
+Expires: 21 March 2022
 
 
                  Framework for QUIC Throughput Testing
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 March 2022.
+   This Internet-Draft will expire on 21 March 2022.
 
 Copyright Notice
 
@@ -83,11 +83,16 @@ Table of Contents
        4.2.1.  QUIC Efficiency Percentage Calculation
      4.3.  Buffer Delay
    5.  Conducting QUIC Throughput Tests
-     5.1.  Results Interpretation
+     5.1.  Using Multiple QUIC Streams
+     5.2.  1-RTT and 0-RTT
+     5.3.  Results Interpretation
    6.  Security Considerations
-     6.1.  0-RTT attack
+     6.1.  0-RTT attack {#0RTTattack}
    7.  IANA Considerations
-   8.  Normative References
+   Acknowledgments
+   References
+     Normative References
+     Informative References
    Author's Address
 
 1.  Introduction
@@ -129,28 +134,30 @@ Table of Contents
    There are multiple changes between TCP and QUIC impacting the
    throughput testing methodology.  Firstly, the multiple QUIC headers
    and frames result in overheads variable in size which in turn impact
-   the computation for the maximum achievable QUIC throughput.
+   the computation for the maximum achievable QUIC throughput, in
+   particular the Transfert Time Ration metric presented in Section 4.1.
    Secondly, QUIC provides streams that can be used for throughput
-   testing but which may also result in variable overheads.  Both points
-   are discussed in Section 4.1.
+   testing but which may also result in variable overheads.
+
+   TODO:
 
    Thirdly, QUIC provides congestion control genericity and receiver-
    controlled control flow credits instead of the TCP sliding receiver
    window.  While QUIC Loss Detection and Congestion Control [RFC9002]
-   specifies a congestion controller similar to TCP NewReno~[RFC6582],
-   the signals QUIC provides for congestion control are generic and are
-   designed to support different sender-side algorithms.  In this
-   document, the achievable QUIC Throughput is the amount of data per
-   unit of time that QUIC transports when in the QUIC Equilibrium state.
-   Derived from Round-Trip Time (RTT) and network Bottleneck Bandwidth
-   (BB), the Bandwidth-Delay Product (BDP) determines the Send and
-   Received Socket buffer sizes required to achieve the maximum QUIC
-   Throughput.  Throughout this document, "maximum achievable
-   throughput" refers to the theoretical achievable throughput when QUIC
-   is in the Equilibrium state.  In this document, we assume that QUIC
-   uses a transmitting side congestion controller with a congestion
-   window (QUIC CWND) and congestion controller states similar to TCP
-   NewReno.
+   exmplifies with a congestion controller similar to TCP
+   NewReno~[RFC6582], the signals QUIC provides for congestion control
+   are generic and are designed to support different sender-side
+   algorithms.  In this document, the achievable QUIC Throughput is the
+   amount of data per unit of time that QUIC transports when in the QUIC
+   Equilibrium state.  Derived from Round-Trip Time (RTT) and network
+   Bottleneck Bandwidth (BB), the Bandwidth-Delay Product (BDP)
+   determines the Send and Received Socket buffer sizes required to
+   achieve the maximum QUIC Throughput.  Throughout this document,
+   "maximum achievable throughput" refers to the theoretical achievable
+   throughput when QUIC is in the Equilibrium state.  In this document,
+   we assume that QUIC uses a transmitting side congestion controller
+   with a congestion window (QUIC CWND) and congestion controller states
+   similar to TCP NewReno.
 
                     New path or      +------------+
                persistent congestion |   Slow     |
@@ -223,12 +230,15 @@ Table of Contents
    client and a server.  One major difference is that contrary to TCP,
    QUIC may not be provided by OSs usually providing transport protocol
    implementations and may instead be sourced by an application from a
-   third-party library.  Thus, in addition to the OS version (e.g.,
-   LINUX OS kernel), the QUIC implementation used by the test host
-   including used congestion control algorithms available and supported
-   QUIC options MUST be considered.  The QUIC test implementation and
-   host MUST be capable of generating and receiving stateful QUIC test
-   traffic at the full BB of the NUT.
+   third-party library.  These different implementations may present "a
+   large behavioural heterogeneity" [marx2020same] potentially impacting
+   the QUIC throughput measurements.  Thus, in addition to the OS
+   version (e.g. a specific LINUX OS kernel version), the QUIC
+   implementation used by the test hosts MUST be considered, including
+   used congestion control algorithms available and supported QUIC
+   options.  The QUIC test implementation and hosts MUST be capable of
+   generating and receiving stateful QUIC test traffic at the full BB of
+   the NUT.
 
    QUIC includes precise RTT statistics and MAY be directly used to
    gather RTT statistics if the QUIC implementation exposes them.  As
@@ -244,7 +254,7 @@ Table of Contents
 3.2.  Round-Trip Time (RTT) and Bottleneck Bandwidth (BB)
 
    Before stateful QUIC testing can begin, it is important to determine
-   the baseline RTT (i.e., non-congested inherent delay) and BB of the
+   the baseline RTT (i.e. non-congested inherent delay) and BB of the
    end-to-end network to be tested.  These measurements are used to
    calculate the BDP and to provide estimates for the congestion control
    credit and Send Socket Buffer sizes that SHOULD be used in subsequent
@@ -354,16 +364,21 @@ Table of Contents
    This section provides formulas to calculate the Maximum Achievable
    QUIC Throughput, with examples for T3 (44.21 Mbps) and Ethernet.
 
-   All calculations are based on IP version 4 with IP headers of 20
-   Bytes and UDP headers of 8 Bytes within an MTU of 1500 Bytes.
-   However, on the contrary to TCP, the QUIC overhead is variable in
-   size, in particular, due to variable-length fields and streams
-   multiplexing.  We are interested in estimating the maximal QUIC
-   Throughput at equilibrium, so we first simplify the problem by
-   considering an optimistic scenario with data exchanged over 1-RTT
-   packets with only a single stream frame per packet.  For the content
-   of the STREAM frame, we consider that the offset field is used but
-   not the length field since there is only one frame per packet.
+   On the contrary to TCP, the QUIC overhead is variable in size, in
+   particular, due to variable-length fields and streams multiplexing.
+   Furthermore, QUIC is a versioned protocol and the overheads may
+   change from version to version.  Other underlying protocol changes
+   such as IP version may also increase overheads or make them variable
+   in size.  The following calculations are based on IP version 4 with
+   IP headers of 20 Bytes, UDP headers of 8 Bytes, QUIC version 1, and
+   within an MTU of 1500 Bytes.
+
+   We are interested in estimating the maximal QUIC Throughput at
+   equilibrium, so we first simplify the problem by considering an
+   optimistic scenario with data exchanged over 1-RTT packets with only
+   a single stream frame per packet.  For the content of the STREAM
+   frame, we consider that the offset field is used but not the length
+   field since there is only one frame per packet.
 
    Here are the 1-RTT packet and STREAM frame headers as defined in
    [RFC9000].
@@ -528,11 +543,11 @@ Table of Contents
 
    Instead, the QUIC efficiency MUST be measured by calculating the
    ratio between QUIC Payload Bytes and UDP Bytes.  QUIC Payload Bytes
-   are the total number of payload Bytes transmitted over QUIC while UDP
-   Bytes are the total number of bytes sent or received on the UDP
-   socket, i.e. including QUIC protocol overheads.  This method allows
-   to capture the impact of retransmission as retransmission of frames
-   will impact the UDP Bytes without impacting the QUIC Bytes.
+   are the total number of payload Bytes sent or received over QUIC
+   while UDP Bytes are the total number of bytes sent or received on the
+   UDP socket, i.e. including QUIC protocol overheads.  This method
+   allows to capture the impact of retransmission as retransmission of
+   frames will impact the UDP Bytes without impacting the QUIC Bytes.
    Retransmitted data will effectively lower the measured QUIC
    Efficiency.
 
@@ -609,21 +624,7 @@ Table of Contents
 5.  Conducting QUIC Throughput Tests
 
    The methodology for QUIC Throughput testing follows the same
-   considerations as described in [RFC6349].  In addition to opening
-   multiple connections, QUIC allows data to be exchanged over fully
-   multiplexed streams.  While using multiple streams over a single
-   connection would be a typical scenario for using QUIC., we do not
-   recommend implementing that scenario.  Firstly, multiple streams
-   impose a variable overhead due to the variable number of STREAM
-   frames per packet lowering the precision of the collected metrics.
-   Secondly, as QUIC packets are encrypted the NUT cannot observe the
-   number of streams opened for a QUIC connection.  Thus we do not
-   expect NUT to apply different policies based on the number of
-   streams.  A QUIC TTD SHOULD NOT use multiple test streams to fill the
-   BDP of the NUT.  A QUIC TTD MAY use two streams over a single
-   connection where one stream is a test stream filling the BDP of the
-   NUT and the other is a control stream used for controlling the test
-   and exchanging test results.
+   considerations as described in [RFC6349].
 
    In the end, a QUIC Throughput Test Device (QUIC TTD) SHOULD generate
    a report with the calculated BDP and QUIC Throughput results.  The
@@ -638,13 +639,66 @@ Table of Contents
    example, for the same Transfer Time Ratio, a better QUIC Efficiency
    could be obtained at the cost of higher Buffer Delays.
 
-5.1.  Results Interpretation
+5.1.  Using Multiple QUIC Streams
+
+   In addition to opening multiple connections, QUIC allows data to be
+   exchanged over fully multiplexed streams.  The primary goal of the
+   methodology relates to ensuring the capacity of a managed network to
+   deliver a particular SLA using QUIC.  As the NUT cannot observe the
+   number of streams opened for a QUIC connection, we do not expect the
+   NUT to apply specific policies based on the number of streams.  In
+   the basic test scenario, A QUIC TTD MAY use two streams over a single
+   connection where one stream is a test stream filling the BDP of the
+   NUT and the other is a control stream used for controlling the test
+   and exchanging test results.
+
+   Implementers of a QUIC Throughput test may however want to use
+   multiple streams in parallel.  On one hand, using multiple streams
+   over a single QUIC connection may result in a variable number of
+   STREAM frames per packet, with the actual numbers depending on the
+   number of streams, the amount of data per stream, and the QUIC
+   implementation [marx2020same].  This overhead variability may lower
+   the QUIC Efficiency, increase the QUIC Transfer Time Ratio, and more
+   generally reduce the reproducibility of the test with respect to the
+   capacity of the NUT to provide an SLA.
+
+   On the other hand, using multiple streams over a single connection is
+   a typical scenario for using QUIC and one of the selling-point of the
+   protocol compared to TCP.  Unstable networks in particular those with
+   a high packet loss are expected to benefit from stream multiplexing.
+   Implementing more complex scenarios in a QUIC Throughput test to
+   better represent the use-cases of the NUT is possible.  A QUIC TTD
+   MAY use multiple test streams to fill the BDP of the NUT.  In such a
+   case, the QUIC TTD SHOULD also run the test using a single test
+   stream to facilitate root-cause analysis.  The specific parameters of
+   a scenario using multiple test streams depend however on the use-case
+   being considered.  For instance, emulating multiple HTTP/3 browsing
+   sessions may involve a large number of short-lived small streams,
+   while emulating real-time conversational streaming sessions may
+   involve long-lived streams with large chunks of data.  Details for
+   such scenarios and relevant QoE influence factors are out-of-scope of
+   the proposed methodology.
+
+5.2.  1-RTT and 0-RTT
+
+   Another new feature of the QUIC protocol is the reduced number of RTT
+   required to establish a connection enabling so-called 1-RTT
+   connection establishment and 0-RTT connection re-establishment.  It
+   may be interesting to get a measure of how these QUIC features result
+   in gain over a particular network.  However, the methodology
+   described in this document is interested in throughput measurements
+   at an equilibrium state.  While the present methodology baselines
+   minimum RTT and measures average RTT during throughput testing,
+   measuring connection re-establishment speed is out-of-scope for the
+   proposed methodology.
+
+5.3.  Results Interpretation
 
    For cases where the test results are not equal to the ideal values,
    some possible causes are as follows:
 
    *  Network congestion causing packet loss, which may be inferred from
-      a poor Normalised QUIC Efficiency % (i.e., higher Normalised QUIC
+      a poor Normalised QUIC Efficiency % (i.e. higher Normalised QUIC
       Efficiency % = less packet loss).
 
    *  Too many QUIC streams in parallel or an inefficient QUIC
@@ -656,7 +710,7 @@ Table of Contents
       Normalised QUIC Efficiency).
 
    *  Network congestion causing an increase in RTT, which may be
-      inferred from the Buffer Delay Percentage (i.e., 0% = no increase
+      inferred from the Buffer Delay Percentage (i.e. 0% = no increase
       in RTT over baseline).
 
    *  Rate limiting by traffic shaping may also cause an increase in
@@ -681,8 +735,6 @@ Table of Contents
       [RFC4821] describes a new, more robust algorithm for MTU discovery
       and ICMP black hole recovery.
 
-   Note that both ends of a QUIC connection MUST be properly tuned.
-
 6.  Security Considerations
 
    Measuring QUIC network performance raises security concerns.  Metrics
@@ -694,7 +746,7 @@ Table of Contents
    attack.  Cooperation between the end-user customer and the network
    provider is thus required.
 
-6.1.  0-RTT attack
+6.1.  0-RTT attack {#0RTTattack}
 
    In practice, a QUIC Throughput test probably implements a control
    channel to control the test and one or more throughput channels to
@@ -708,7 +760,13 @@ Table of Contents
 
    This document has no IANA actions.
 
-8.  Normative References
+Acknowledgments
+
+   Thanks to Sylvain Nadeau for his valuable inputs.
+
+References
+
+Normative References
 
    [RFC1191]  Mogul, J. and S. Deering, "Path MTU discovery", RFC 1191,
               DOI 10.17487/RFC1191, November 1990,
@@ -759,6 +817,15 @@ Table of Contents
    [RFC9002]  Iyengar, J., Ed. and I. Swett, Ed., "QUIC Loss Detection
               and Congestion Control", RFC 9002, DOI 10.17487/RFC9002,
               May 2021, <https://datatracker.ietf.org/doc/html/rfc9002>.
+
+Informative References
+
+   [marx2020same]
+              Marx, R., Herbots, J., Lamotte, W., and P. Quax, "Same
+              standards, different decisions: A study of quic and http/3
+              implementation diversity", Proceedings of the Workshop on
+              the Evolution, Performance, and Interoperability of QUIC,
+              2020.
 
 Author's Address
 
